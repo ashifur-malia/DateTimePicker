@@ -22,9 +22,11 @@ body{
     border: none;
     display: inline-block;
     width:26px;
+    text-align: center;
 }
 .customInputGroup > input:focus{
     outline: none;
+    
 }
 .customInputGroup> .customInputcontrol.year{
     width:36px;

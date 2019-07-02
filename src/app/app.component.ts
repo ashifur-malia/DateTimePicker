@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { INgxMyDpOptions, IMyDateModel, IMyDate } from 'ngx-mydatepicker';
 import { WeekDay } from '@angular/common';
 import { DateType } from './up-anddown-date.directive';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -19,20 +20,37 @@ export class AppComponent implements OnInit {
   isDateValid: boolean = false;
   model: IMyDate;
   DateType = DateType;
+  ngxOptions: INgxMyDpOptions;
 
-  get viewMonth(): number {
-    return this.model.month + 1;
+  get viewMonth(): string {
+    let month = this.model.month+1;
+    let result = this.addLeadingZero(month);
+    return result;
   }
 
-  set viewMonth(rhs: number) {
-    this.model.month = rhs - 1;
+  set viewMonth(rhs: string) {
+    let month = +rhs -1;
+    this.model.month = month;
+    console.log(month,'setting month');
+  }
+
+  get viewDay(): string{
+    let day = this.model.day;
+    let result = this.addLeadingZero(day);
+    return result;
+  }
+  
+  set viewDay(rhs: string) {
+    let day = +rhs;
+    this.model.day = day;
   }
   
   constructor() { }
 
   ngOnInit(): void {
     let today = new Date();
-    this.model =  { year: today.getFullYear(), month: today.getMonth(), day: today.getDate() };
+    this.model = { year: today.getFullYear(), month: today.getMonth(), day: today.getDate() };
+    this.ngxOptions = { dateFormat: 'dd/MM/YYYY' };
   }
 
   onDateChanged(selectedDate: IMyDateModel): void {
@@ -55,6 +73,7 @@ export class AppComponent implements OnInit {
     let validDate = new Date(this.model.year, this.model.month, this.model.day);
       this.model.day = validDate.getDate();
       this.model.month = validDate.getMonth();
+      
     this.model.year = validDate.getFullYear();
     this.isDateValid = true;  
     }    
@@ -65,12 +84,24 @@ export class AppComponent implements OnInit {
     this.valideDate();
   }
   PassedToDoValidateMonth(event: number) {
-    this.viewMonth = event;
+    this.viewMonth = event.toString();
     this.valideDate();
   }
   PassedToDoValidateYear(event: number) {
     this.model.year = event;
     this.valideDate();
+  }
+
+  addLeadingZero(data: number): string {
+    let receivedData = data.toString();
+    if (receivedData.length < 2 ) {
+      receivedData = '0' + receivedData;
+      // console.log(receivedData,'inside method');
+      return receivedData;
+    }
+    if (receivedData.length >= 2) {
+      return receivedData;
+    }
   }
 
 }

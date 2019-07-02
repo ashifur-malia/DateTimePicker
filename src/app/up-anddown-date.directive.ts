@@ -15,7 +15,6 @@ export class UpAnddownDateDirective implements OnInit {
   private elementRef: HTMLInputElement;
   private focused: boolean = false;
   private inputValue: number = null;
-  private keyPressed: boolean = false;
   private PressedLeftArrow: boolean = false;
   private PressedRightArrow: boolean = false;
   private PressedUpArrow: boolean = false;
@@ -23,7 +22,6 @@ export class UpAnddownDateDirective implements OnInit {
   private dayControl: HTMLInputElement;
   private monthControl: HTMLInputElement;
   private yearControl: HTMLInputElement;
-  private inputValid: boolean = false;
   private result: number = 0;
   @Input() dateType: DateType;
   @Output() outputValueChange = new EventEmitter<number>();
@@ -32,7 +30,7 @@ export class UpAnddownDateDirective implements OnInit {
   ngOnInit(): void {
     this.dayControl = <HTMLInputElement>document.getElementById("dayControl");
     this.monthControl = <HTMLInputElement>document.getElementById("monthControl");
-    this.yearControl =<HTMLInputElement> document.getElementById("yearControl");    
+    this.yearControl = <HTMLInputElement>document.getElementById("yearControl");    
   }
 
   constructor(el: ElementRef) {
@@ -47,7 +45,6 @@ export class UpAnddownDateDirective implements OnInit {
   onInput(input: string) {
     if (input !== null) {
       this.inputValue = +input;
-      this.inputValid = true;
     }
   }
 

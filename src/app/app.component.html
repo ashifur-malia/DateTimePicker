@@ -14,7 +14,7 @@
             <div class='col-md-8 inputField'>
                 <div class='customInputGroup'>
                     <input class='customInputcontrol'
-                            appUpAnddownDate
+                            appUpAnddownDate                            
                             [dateType]='DateType.day'
                             (outputValueChange)='PassedToDoValidateDay($event)'
                             id='dayControl'
@@ -22,7 +22,7 @@
                             min="1"
                             maxlength='2'
                             placeholder="dd"
-                            [(ngModel)]='model.day'                            
+                            [(ngModel)]='viewDay'                            
                             (change)="valideDate($event)"/>/
                     <input  class='customInputcontrol'
                             id='monthControl'
@@ -49,6 +49,7 @@
                     <button type="button" 
                             class='customInputcontrol datePickerback' 
                             ngx-mydatepicker 
+                            [options]='ngxOptions'
                             #dp="ngx-mydatepicker"
                             (click)="dp.toggleCalendar()"
                             (dateChanged)="onDateChanged($event)"
