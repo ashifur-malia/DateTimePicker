@@ -1,0 +1,53 @@
+@import "../node_modules/bootstrap3/dist/css/bootstrap.css";
+
+body{
+    width: 100vw;
+    margin: 0;
+}
+.inputField{    
+    margin:0;
+    margin-top: 10%;
+    padding-right: 0;    
+}
+.rowboder{
+    padding-right: 0;
+}
+.customInputGroup{
+    display: inline-block;
+    border: 1px solid #65b1f8;
+    border-radius: 2px;
+    box-shadow: #65b1f8 ;
+}
+.customInputGroup > input{
+    border: none;
+    display: inline-block;
+    width:26px;
+    text-align: center;
+}
+.customInputGroup > input:focus{
+    outline: none;
+    
+}
+.customInputGroup> .customInputcontrol.year{
+    width:36px;
+    margin-right: 1px;
+}
+.customInputGroup > .customInputcontrol{
+    margin-left:1px;  
+    width:26px;  
+}
+.datePickerback{
+background: transparent;
+border: none;
+}
+@media (min-width: 768px){
+    .customInputGroup{
+        padding: 2px;
+    }
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}

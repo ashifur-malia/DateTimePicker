@@ -1,0 +1,67 @@
+
+
+<div class='container-fluid containerColor'>
+    <div class='row'>
+        <div class='col-xs-6'>
+            <div>
+                selected date {{model.day}} {{viewMonth}} {{model.year}}<br>
+                
+            </div>
+        </div>
+
+        <div class='col-xs-6 rowboder'>
+            <div class='col-md-4 inputField'>Inception Date</div>
+            <div class='col-md-8 inputField'>
+                <div class='customInputGroup'>
+                    <input class='customInputcontrol'
+                            appUpAnddownDate                            
+                            [dateType]='DateType.day'
+                            (outputValueChange)='PassedToDoValidateDay($event)'
+                            id='dayControl'
+                            max="31"
+                            min="1"
+                            maxlength='2'
+                            placeholder="dd"
+                            [(ngModel)]='viewDay'                            
+                            (change)="valideDate($event)"/>/
+                    <input  class='customInputcontrol'
+                            id='monthControl'
+                            appUpAnddownDate
+                            [dateType]='DateType.month'
+                            (outputValueChange)='PassedToDoValidateMonth($event)'
+                            max="12"
+                            min="1"
+                            maxlength='2'
+                            placeholder="MM"
+                            [(ngModel)]='viewMonth'
+                            (change)="valideDate($event)"/>/
+                        
+                    <input  class='customInputcontrol year'
+                            id='yearControl'
+                            appUpAnddownDate
+                            [dateType]='DateType.year'
+                            (outputValueChange)='PassedToDoValidateYear($event)'
+                            maxlength='4'
+                            placeholder="YYYY"
+                            [(ngModel)]='model.year'                            
+                            (change)="valideDate($event)"/>
+                        
+                    <button type="button" 
+                            class='customInputcontrol datePickerback' 
+                            ngx-mydatepicker 
+                            [options]='ngxOptions'
+                            #dp="ngx-mydatepicker"
+                            (click)="dp.toggleCalendar()"
+                            (dateChanged)="onDateChanged($event)"
+                            (isDateValid)='onValidDate($event)'>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<router-outlet></router-outlet>
